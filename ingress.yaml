@@ -3,6 +3,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
+  namespace: kia
   name: the-ingress
   annotations:
     kubernetes.io/ingress.class: alb

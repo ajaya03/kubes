@@ -1,0 +1,62 @@
+apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURCVENDQWUyZ0F3SUJBZ0lJSkVjR25rZmo5bGN3RFFZSktvWklodmNOQVFFTEJRQXdGVEVUTUJFR0ExVUUKQXhNS2EzVmlaWEp1WlhSbGN6QWVGdzB5TkRBME1qY3dOakV4TkRWYUZ3MHpOREEwTWpVd05qRTJORFZhTUJVeApFekFSQmdOVkJBTVRDbXQxWW1WeWJtVjBaWE13Z2dFaU1BMEdDU3FHU0liM0RRRUJBUVVBQTRJQkR3QXdnZ0VLCkFvSUJBUURaZEZaL0RhOGtnU0hmOUxDTlZOVm8yeXBhZ3Z4ZlUwYlFUSjdpc0cya3E3ZjJYQndNQUV5VnQ2RXMKT3h0RUtta1RFZ1dPRUkzbXJoWDIwRWp3SFEvZnVoTnlNUW83NDhjL0lEckpEdmZiVHRZN0I1eWxkeWxIVmRXcApabkkyNVAzOXFSeDYzMlo4V0VUcVVrL2taa0pJV2ZCNlRqNm5QTlVXTGtUNUJaVG5IcFVDSkxndXF4aG9rVlBuCmxkTEJLUkJrMzNPUTU0dCtKUk1yZnd0UlIxOFlXWmpPN1FuVlVBRkYrNXBFNkdFd0NTbnRyVndYMU1PNlJhWjgKajA4QXlIQ2FhcWxXZDVKSU45Wll3NzdjNXRWRU1yYUU5TytqMkpVTzdvRy9YU05zSW9EcENNazRIT25xVlpBdQpuUWFROWU2TXMwNDM4WkhxK1g5VWczU05Yc3BoQWdNQkFBR2pXVEJYTUE0R0ExVWREd0VCL3dRRUF3SUNwREFQCkJnTlZIUk1CQWY4RUJUQURBUUgvTUIwR0ExVWREZ1FXQkJSb3NjMGlEZnN1YUM0NUtCeDVJcGlnTXdjaXF6QVYKQmdOVkhSRUVEakFNZ2dwcmRXSmxjbTVsZEdWek1BMEdDU3FHU0liM0RRRUJDd1VBQTRJQkFRQmF0Ym9oZ05rQwpBa2RDUlBrbmFyVDJRdkZiN25GL0xqYmdxd1gxdVRWdUViMzJHZzNZSHdWblpPWXJueDNuVnM1WmtLYmFTTTl0CjY2N0NjeERLM0pUUE1UNXl1dWJCVjBZUUp3QUZhRXpxZ1BCZDlxUzFOMTdIYUdYcnNPKy9hRThMVlNWalk2anAKUGtUWkNTRXJEVk9DR0w0alFmZGlYbGNOU1hNaElvclFSR0l6UzIxK2xuZEttU1kxUHRwaFNmOW85YTNycjV3WgpJRnl5ZVFENVNJM3ZJWlVlRi8zTW1qd3QyMlViMGcrR0IrYmpTMlZjVkJwZ0ExZzd6VVpoblY5cjNMYlRGNjRyCktndVZIVVluK0F5L3FWWmV5RkpaQ0lpbWZJZzE4alNiMFcwVGNxQmcyVkdGaGJta0p2NytVY29MQ3VtVFpVZHcKcHA1UFVaREdEcGpFCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+    server: https://E799B839489AFDF9C664C218558BD532.gr7.us-east-1.eks.amazonaws.com
+  name: cluster-zero.us-east-1.eksctl.io
+contexts:
+- context:
+    cluster: cluster-zero.us-east-1.eksctl.io
+    namespace: kia
+    user: ajay.dhungel@cluster-zero.us-east-1.eksctl.io
+  name: ajay.dhungel@cluster-zero.us-east-1.eksctl.io
+- context:
+    cluster: arn:aws:eks:us-east-1:544234170512:cluster/cluster-zero
+    user: arn:aws:eks:us-east-1:544234170512:cluster/cluster-zero
+  name: arn:aws:eks:us-east-1:544234170512:cluster/cluster-zero
+
+current-context: ajay.dhungel@cluster-zero.us-east-1.eksctl.io
+kind: Config
+preferences: {}
+users:
+
+- name: ajay.dhungel@cluster-zero.us-east-1.eksctl.io
+  user:
+    exec:
+      apiVersion: client.authentication.k8s.io/v1beta1
+      args:
+      - eks
+      - get-token
+      - --output
+      - json
+      - --cluster-name
+      - cluster-zero
+      - --region
+      - us-east-1
+      command: aws
+      env:
+      - name: AWS_STS_REGIONAL_ENDPOINTS
+        value: regional
+      interactiveMode: IfAvailable
+      provideClusterInfo: false
+
+
+
+- name: arn:aws:eks:us-east-1:544234170512:cluster/cluster-zero
+  user:
+    exec:
+      apiVersion: client.authentication.k8s.io/v1beta1
+      args:
+      - --region
+      - us-east-1
+      - eks
+      - get-token
+      - --cluster-name
+      - cluster-zero
+      - --output
+      - json
+      command: aws
+      env: null
+      interactiveMode: IfAvailable
+      provideClusterInfo: false
+

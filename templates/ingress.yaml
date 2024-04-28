@@ -1,0 +1,23 @@
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  namespace: kia
+  name: the-ingress
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: instance
+    
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /mypath
+            pathType: Prefix
+            backend:
+              service:
+                name: my-service
+                port:
+                  number: 80
